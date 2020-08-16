@@ -77,6 +77,9 @@ const calculator = {
       } else if (operator === '*') {
           return firstOperand * secondOperand;
       } else if (operator === '/') {
+          if (secondOperand == 0){
+              return "Error";
+          }
           return firstOperand / secondOperand;
       }
       return secondOperand;
