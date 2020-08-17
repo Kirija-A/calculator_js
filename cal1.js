@@ -5,7 +5,6 @@
 // The operator key will store the operator for an expression. Its initial value is also null
 // waitingForSecondOperand essentially serves as a way to check if both the first operand and the operator have been inputted. If it’s true, the next numbers that the user enters will constitute the second operand
 
-
 const calculator = {
     displayValue: '0',
     firstOperand: null,
@@ -13,6 +12,7 @@ const calculator = {
     operator: null,
   };
 
+  // user's input modifies displayValue
   function inputDigit(digit) {
       const {displayValue, waitingForSecondOperand} = calculator;
 
@@ -26,7 +26,7 @@ const calculator = {
       console.log(calculator);
   }
   
-
+// when dicimal is clicked, the decimal appended to the displayed value except if it already contains a decimal
   function inputDecimal(dot) {
       if (calculator.waitingForSecondOperand === true){
           calculator.displayValue = '0.'
@@ -40,6 +40,7 @@ const calculator = {
       }
   }
 
+  // handling Operators
   function handleOperator(nextOperator) {
       //destructure the properties on the calculator object
       const {firstOperand, displayValue, operator} = calculator
@@ -69,6 +70,7 @@ const calculator = {
       console.log(calculator);
   }
   
+  // Calculate function
   function calculate(firstOperand, secondOperand, operator) {
       if (operator === '+'){
           return firstOperand + secondOperand;
@@ -77,6 +79,7 @@ const calculator = {
       } else if (operator === '*') {
           return firstOperand * secondOperand;
       } else if (operator === '/') {
+          //returns 'Error' message when divide by 0
           if (secondOperand == 0){
               return "Error";
           }
@@ -85,6 +88,7 @@ const calculator = {
       return secondOperand;
   }
 
+  // Reset calculator display to 0
   function resetCalculator(){
       calculator.displayValue = '0';
       calculator.firstOperand = null;
@@ -102,6 +106,8 @@ const calculator = {
   }
   updateDisplay();
 
+
+// EventListener - this function listens for clicks on the calculator keys and determine what type of key is clicked as there are four sets of keys: digits(number), operators, deimal adn all-clear.
 // Refactored event listener
 const keys = document.querySelector('.calculator-keys');    
   keys.addEventListener('click', event => {
